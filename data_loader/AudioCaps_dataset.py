@@ -69,7 +69,8 @@ class AudioCaps(BaseDataset):
             "pann": ["aggregated_pann/pann-raw.hickle"],
             "syncnet": ["aggregated_syncnet/syncnet-raw.hickle"],
             "vggsound": ["aggregated_vggsound/vggsound-raw.hickle"],
-            "speech": ["aggregated_speech/w2v_mean.pkl"]
+            "speech": ["aggregated_speech/w2v_mean.pkl"],
+            "ast": ["aggregated_ast/ast-raw.hickle"]
         }
         feature_info = {
             "custom_paths": custom_paths,
@@ -82,8 +83,9 @@ class AudioCaps(BaseDataset):
         return feature_info
 
     def load_features(self):
+        # import ipdb; ipdb.set_trace()
         root_feat = self.root_feat
-        feat_names = {key: self.visual_feat_paths(key) for key in
+        feat_names = {key: self.visual_feat_paths(key) for key in 
                       self.paths["feature_names"]}
         feat_names.update(self.paths["custom_paths"])
         features = {}
@@ -123,6 +125,7 @@ class AudioCaps(BaseDataset):
             # for key in keys:
             #     raw_captions_fused[key] = list(itertools.chain.from_iterable(raw_captions[key]))
             # self.raw_captions = raw_captions_fused
+            # import ipdb; ipdb.set_trace()
             text_feat_path = root_feat / self.paths["text_feat_paths"][self.text_feat]
             self.text_features = memcache(text_feat_path)
 

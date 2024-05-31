@@ -142,6 +142,7 @@ class ConfigParser:
         """Finds a function handle with the name given as 'type' in config, and returns
         the instance initialized with corresponding keyword args given as 'args'.
         """
+        
         module_name = self[name]['type']
         module_args = dict(self[name]['args'])
         msg = (f"Fail for {module_name}\n"

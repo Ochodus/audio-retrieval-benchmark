@@ -31,7 +31,7 @@ mkl-service==2.4.0
 mock==4.0.3
 msgpack==1.0.2
 msgpack-numpy==0.4.7.1
-numpy==1.20.3
+numpy==1.24.3
 opencl-rt==2021.2.0
 ordered-set==4.0.2
 pandas==1.0.3
@@ -52,7 +52,7 @@ pytz==2021.1
 PyYAML==5.4.1
 requests==2.25.1
 scikit-learn==0.24.2
-scipy==1.6.3
+scipy==1.8.1
 seaborn==0.11.1
 six==1.16.0
 tailf==0.3.2

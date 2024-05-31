@@ -1,0 +1,30 @@
+INFO:root:Namespace(data_dir=PosixPath('data'), dataset='data', experiment='audiocaps-train-vggish-vggsound', experiments_path='misc/experiments-audiocaps.json', refresh=False)
+INFO:root:Running evaluation on existent seeds
+INFO:root:Model already downloaded for audiocaps-train-vggish-vggsound seed seed-0
+INFO:root:Config already downloaded for audiocaps-train-vggish-vggsound seed seed-0
+INFO:root:python test.py --config data/saved/models/audiocaps-train-vggish-vggsound/7e2eda12/seed-0/2021-06-09_17-06-26/config.json --resume data/saved/models/audiocaps-train-vggish-vggsound/7e2eda12/seed-0/2021-06-09_17-06-26/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_7e2eda12_seed-0.txt
+INFO:root:Running evaluation on existent seeds
+INFO:root:Model already downloaded for audiocaps-train-vggish-vggsound seed seed-1
+INFO:root:Config already downloaded for audiocaps-train-vggish-vggsound seed seed-1
+INFO:root:python test.py --config data/saved/models/audiocaps-train-vggish-vggsound/7e2eda12/seed-1/2021-06-09_17-15-12/config.json --resume data/saved/models/audiocaps-train-vggish-vggsound/7e2eda12/seed-1/2021-06-09_17-15-12/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_7e2eda12_seed-1.txt
+INFO:root:Running evaluation on existent seeds
+INFO:root:Model already downloaded for audiocaps-train-vggish-vggsound seed seed-2
+INFO:root:Config already downloaded for audiocaps-train-vggish-vggsound seed seed-2
+INFO:root:python test.py --config data/saved/models/audiocaps-train-vggish-vggsound/7e2eda12/seed-2/2021-06-09_17-24-01/config.json --resume data/saved/models/audiocaps-train-vggish-vggsound/7e2eda12/seed-2/2021-06-09_17-24-01/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_7e2eda12_seed-2.txt
+INFO:root:Now averaging results
+INFO:root:audiocaps-train-vggish-vggsound:
+R1_t2v: 7.8, 0.2
+R5_t2v: 24.7, 0.2
+R10_t2v: 35.4, 0.5
+R50_t2v: 64.9, 0.1
+MedR_t2v: 23.0, 1.0
+MeanR_t2v: 79.9, 2.9
+geometric_mean_R1-R5-R10_t2v: 19.0, 0.2
+R1_v2t: 5.6, 0.3
+R5_v2t: 16.9, 1.1
+R10_v2t: 24.5, 1.5
+R50_v2t: 48.4, 1.2
+MedR_v2t: 55.5, 2.6
+MeanR_v2t: 228.1, 4.2
+geometric_mean_R1-R5-R10_v2t: 13.2, 0.7
+

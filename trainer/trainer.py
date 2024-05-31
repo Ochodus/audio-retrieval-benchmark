@@ -96,6 +96,7 @@ class Trainer(BaseTrainer):
         self.model.train()
         memory_summary()
 
+        # import ipdb; ipdb.set_trace()
         for batch_idx, minibatch in enumerate(self.data_loaders["train"]):
             for key, val in minibatch["experts"].items():
                 minibatch["experts"][key] = val.to(self.device)

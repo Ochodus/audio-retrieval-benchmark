@@ -1,0 +1,27 @@
+INFO:root:Namespace(data_dir=PosixPath('data'), dataset='data', experiment='audiocaps-train-full-ce-only-audio', experiments_path='misc/experiments-audiocaps.json', refresh=False)
+INFO:root:Running evaluation on existent seeds
+INFO:root:Downloading model for seed-0 since it does not exist on the local machine
+INFO:root:python test.py --config data/saved/models/audiocaps-train-full-ce-only-audio/c0b5bc86/seed-0/2021-06-10_15-34-48/config.json --resume data/saved/models/audiocaps-train-full-ce-only-audio/c0b5bc86/seed-0/2021-06-10_15-34-48/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_c0b5bc86_seed-0.txt
+INFO:root:Running evaluation on existent seeds
+INFO:root:Downloading model for seed-1 since it does not exist on the local machine
+INFO:root:python test.py --config data/saved/models/audiocaps-train-full-ce-only-audio/c0b5bc86/seed-1/2021-06-10_15-36-14/config.json --resume data/saved/models/audiocaps-train-full-ce-only-audio/c0b5bc86/seed-1/2021-06-10_15-36-14/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_c0b5bc86_seed-1.txt
+INFO:root:Running evaluation on existent seeds
+INFO:root:Downloading model for seed-2 since it does not exist on the local machine
+INFO:root:python test.py --config data/saved/models/audiocaps-train-full-ce-only-audio/c0b5bc86/seed-2/2021-06-10_15-36-15/config.json --resume data/saved/models/audiocaps-train-full-ce-only-audio/c0b5bc86/seed-2/2021-06-10_15-36-15/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_c0b5bc86_seed-2.txt
+INFO:root:Now averaging results
+INFO:root:audiocaps-train-full-ce-only-audio:
+R1_t2v: 8.1, 0.4
+R5_t2v: 25.8, 0.5
+R10_t2v: 37.1, 0.6
+R50_t2v: 67.1, 0.6
+MedR_t2v: 20.7, 0.6
+MeanR_t2v: 73.2, 3.3
+geometric_mean_R1-R5-R10_t2v: 19.8, 0.3
+R1_v2t: 7.2, 1.0
+R5_v2t: 21.4, 0.7
+R10_v2t: 29.5, 1.4
+R50_v2t: 55.8, 2.2
+MedR_v2t: 35.6, 5.5
+MeanR_v2t: 174.3, 13.3
+geometric_mean_R1-R5-R10_v2t: 16.6, 1.2
+

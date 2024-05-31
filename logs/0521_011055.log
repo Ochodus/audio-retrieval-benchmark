@@ -1,0 +1,16 @@
+INFO:root:Namespace(data_dir=PosixPath('data'), dataset='data', experiment='audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound', experiments_path='misc/experiments-audiocaps.json', refresh=False)
+INFO:root:Running evaluation on existent seeds
+INFO:root:Model already downloaded for audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound seed seed-0
+INFO:root:Config already downloaded for audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound seed seed-0
+INFO:root:python test.py --config data/saved/models/audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound/b51f941a/seed-0/2021-06-10_14-56-45/config.json --resume data/saved/models/audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound/b51f941a/seed-0/2021-06-10_14-56-45/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_b51f941a_seed-0.txt
+INFO:root:Running evaluation on existent seeds
+INFO:root:Model already downloaded for audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound seed seed-1
+INFO:root:Config already downloaded for audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound seed seed-1
+INFO:root:python test.py --config data/saved/models/audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound/b51f941a/seed-1/2021-06-10_14-57-08/config.json --resume data/saved/models/audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound/b51f941a/seed-1/2021-06-10_14-57-08/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_b51f941a_seed-1.txt
+INFO:root:Running evaluation on existent seeds
+INFO:root:Model already downloaded for audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound seed seed-2
+INFO:root:Config already downloaded for audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound seed seed-2
+INFO:root:python test.py --config data/saved/models/audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound/b51f941a/seed-2/2021-06-10_14-59-04/config.json --resume data/saved/models/audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound/b51f941a/seed-2/2021-06-10_14-59-04/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_b51f941a_seed-2.txt
+INFO:root:Now averaging results
+INFO:root:audiocaps-train-full-ce-r2p1d-inst-vggish-vggsound:
+

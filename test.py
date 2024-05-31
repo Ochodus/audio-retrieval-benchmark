@@ -107,7 +107,6 @@ def get_model_and_data_loaders(
     return model, data_loaders
 
 def evaluation(config, logger=None, trainer=None):
-
     if getattr(config._args, "per_class", False):
         name_test_txt = config._args.config.split('configs/audiocaps/train-vggish-vggsound-')[1].split('.json')[0]
         name_test_txt = f"{name_test_txt}.txt"

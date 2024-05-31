@@ -1,0 +1,27 @@
+INFO:root:Namespace(data_dir=PosixPath('data'), dataset='data', experiment='audiocaps-train-only-vggsound', experiments_path='misc/experiments-audiocaps.json', refresh=False)
+INFO:root:Running evaluation on existent seeds
+INFO:root:Downloading model for seed-0 since it does not exist on the local machine
+INFO:root:python test.py --config data/saved/models/audiocaps-train-only-vggsound/afab0e0c/seed-0/2021-06-16_01-21-37/config.json --resume data/saved/models/audiocaps-train-only-vggsound/afab0e0c/seed-0/2021-06-16_01-21-37/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_afab0e0c_seed-0.txt
+INFO:root:Running evaluation on existent seeds
+INFO:root:Downloading model for seed-1 since it does not exist on the local machine
+INFO:root:python test.py --config data/saved/models/audiocaps-train-only-vggsound/afab0e0c/seed-1/2021-06-16_01-28-08/config.json --resume data/saved/models/audiocaps-train-only-vggsound/afab0e0c/seed-1/2021-06-16_01-28-08/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_afab0e0c_seed-1.txt
+INFO:root:Running evaluation on existent seeds
+INFO:root:Downloading model for seed-2 since it does not exist on the local machine
+INFO:root:python test.py --config data/saved/models/audiocaps-train-only-vggsound/afab0e0c/seed-2/2021-06-16_01-33-51/config.json --resume data/saved/models/audiocaps-train-only-vggsound/afab0e0c/seed-2/2021-06-16_01-33-51/trained_model.pth --device 0 --eval_from_training_config >&1 | tee logs_eval/log_afab0e0c_seed-2.txt
+INFO:root:Now averaging results
+INFO:root:audiocaps-train-only-vggsound:
+R1_t2v: 20.5, 0.6
+R5_t2v: 52.1, 0.4
+R10_t2v: 67.0, 1.0
+R50_t2v: 91.1, 1.6
+MedR_t2v: 5.0, 0.0
+MeanR_t2v: 20.6, 2.8
+geometric_mean_R1-R5-R10_t2v: 41.5, 0.7
+R1_v2t: 24.6, 0.9
+R5_v2t: 55.9, 0.3
+R10_v2t: 70.4, 0.4
+R50_v2t: 92.4, 0.6
+MedR_v2t: 4.3, 0.6
+MeanR_v2t: 19.9, 1.4
+geometric_mean_R1-R5-R10_v2t: 45.9, 0.7
+

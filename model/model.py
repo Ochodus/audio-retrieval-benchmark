@@ -141,8 +141,8 @@ class CENet(BaseModel):
             self.random_feats = set()
 
         # sanity checks on the features that may be vladded
-        pre_vlad_feat_sizes = {"ocr": 300, "audio": 128, "speech": 300, "pann": 2048,
-                               "syncnet": 1024, "vggsound": 512}
+        pre_vlad_feat_sizes = {"ocr": 300, "audio": 2048, "speech": 300, "pann": 2048,
+                               "syncnet": 1024, "vggsound": 512, "ast": 768}
         pre_vlad_feat_sizes = {key: val for key, val in pre_vlad_feat_sizes.items()
                                if feat_aggregation[key]["temporal"] == "vlad"}
 
@@ -174,7 +174,7 @@ class CENet(BaseModel):
             expert_dims["detection-sem"] = (new_in_dim, expert_dims["detection-sem"][1])
 
         vlad_feat_sizes = {key: val for key, val in vlad_clusters.items()}
-
+        
         self.pooling = nn.ModuleDict()
         for mod, expected in pre_vlad_feat_sizes.items():
             if mod in expert_dims.keys():
@@ -250,6 +250,7 @@ class CENet(BaseModel):
         return experts
 
     def forward(self, experts, ind, text=None, raw_captions=None, text_token_mask=None):
+        # import ipdb; ipdb.set_trace()
         aggregated_experts = OrderedDict()
 
         if "detection-sem" in self.expert_dims:
@@ -281,7 +282,6 @@ class CENet(BaseModel):
                 aggregated_experts[mod] = experts[mod]
             elif mod in self.tensor_storage["variable"]:
                 aggregated_experts[mod] = self.pooling[mod](experts[mod])
-
         # for mod in variable_sz_experts:
         #     if mod in self.expert_dims.keys():
         #         experts[mod] = drop_nans(x=experts[mod], ind=ind[mod],
@@ -1057,6 +1057,7 @@ def sharded_cross_view_inner_product(vid_embds, text_embds, text_weights,
 
     # unroll separate captions onto first dimension and treat them separately
     sims = th.zeros(T * num_caps, B, device=device)
+    
     text_weights = text_weights.view(T * num_caps, -1)
     if False:
         mus = [round(x, 3) for x in text_weights.mean(0).detach().cpu().numpy().tolist()]
@@ -1065,7 +1066,6 @@ def sharded_cross_view_inner_product(vid_embds, text_embds, text_weights,
         for mod, mu, std in zip(subspaces, mus, stds):
             summary += f"{mod}: {mu} +/- {std} "
         print(summary)
-    
     if keep_missing_modalities:
         # assign every expert/text inner product the same weight, even if the expert
         # is missing

@@ -125,7 +125,6 @@ class ExpertDataLoader:
             ce_shared_dim: Union[None, int] = None,
             **args,
     ):
-
         # Ensure that the dictionaries are hashable to allow use of caching
         raw_input_dims = HashableOrderedDict(raw_input_dims)
         feat_aggregation = HashableDict(feat_aggregation)
@@ -170,9 +169,9 @@ class ExpertDataLoader:
             ce_shared_dim=ce_shared_dim,
             **args,
         )
-
+        
+        # import ipdb; ipdb.set_trace()
         if "retrieval" in task:
-            # import pdb; pdb.set_trace()
             dataset = dataset_loader(cls_partition="train", **common_kwargs)
             x = dataset_loader.cache_info()  # pylint: disable=no-value-for-parameter
             logger.info(f"cache info {x}")

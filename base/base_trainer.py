@@ -19,7 +19,6 @@ class BaseTrainer:
         self.config = config
         self.logger = config.get_logger(
             'trainer', config['trainer']['verbosity'])
-
         # setup GPU device if available, move model into configured device
         self.device, device_ids = self._prepare_device(config['n_gpu'])
         self.model = model.to(self.device)

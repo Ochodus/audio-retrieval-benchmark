@@ -2,12 +2,13 @@
     "inherit_from": "configs/base_config.json",
     "eval_mode": "test_run",
     "experts": {
-        "text_feat": "w2v",
+        "text_feat": "bert",
         "modalities": [
             "imagenet.resnext101_32x48d.0",
             "r2p1d.r2p1d-ig65m.0",
             "scene.densenet161.0",
-            "audio"
+            "audio",
+            "ast"
         ]
     },
     "arch": {
@@ -28,7 +29,8 @@
                 "pann": 16,
                 "syncnet": 16,
                 "vggsound": 16,
-                "speech": 5
+                "speech": 5,
+                "ast": 16
             },
             "ghost_clusters": {
                 "text": 1
@@ -67,7 +69,8 @@
                 "pann": 29,
                 "syncnet": 29,
                 "vggsound": 29,
-                "speech": 35
+                "speech": 35,
+                "ast": 29
             },
             "feat_aggregation": {
                 "imagenet.senet154.0": {
@@ -218,6 +221,13 @@
                 },
                 "audio.vggish.0": {
                     "model": "vggish",
+                    "flaky": true,
+                    "temporal": "vlad",
+                    "type": "embed",
+                    "binarise": false
+                },
+                "ast": {
+                    "model": "ast",
                     "flaky": true,
                     "temporal": "vlad",
                     "type": "embed",

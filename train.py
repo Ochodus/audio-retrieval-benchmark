@@ -4,14 +4,12 @@
 import os
 import copy
 import time
-import random
 import socket
 import argparse
 import warnings
 from test import evaluation
 from pathlib import Path
 
-import numpy as np
 import swats
 import torch
 torch.cuda.empty_cache()
@@ -28,7 +26,7 @@ from trainer import Trainer
 from utils.util import compute_dims, compute_trn_config, update_src_web_video_dir
 from parse_config import ConfigParser
 from logger.log_parser import log_summary
-import math
+
 
 def run_exp(config):
     warnings.filterwarnings('ignore')
@@ -57,7 +55,6 @@ def run_exp(config):
         logger.info(f"{ii + 1}/{len(seeds)} Setting experiment random seed to {seed}")
         set_seeds(seed)
         config["seed"] = seed
-
         model = config.init(
             name='arch',
             module=module_arch,
@@ -91,6 +88,7 @@ def run_exp(config):
             caption_masks=config.get("caption_masks", None),
             ce_shared_dim=config["experts"].get("ce_shared_dim", None),
         )
+        print(data_loaders)
 
         if config.get("manual_linear_init", False):
             logger.info("manually setting init for linear layers")
@@ -153,7 +151,6 @@ def run_exp(config):
         logger.info(f"Training took {duration}")
 
         if config._config.get("eval_settings", False):
-            # import pdb; pdb.set_trace()
             eval_config = copy.deepcopy(config)
             merge(eval_config._config, config["eval_settings"], strategy=Strategy.REPLACE)
             eval_config._args.resume = best_ckpt_path

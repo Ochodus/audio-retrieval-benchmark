@@ -203,7 +203,7 @@ def compute_dims(
 ) -> Tuple[Dict[str, Tuple[int, int]], Dict[str, int], int]:
     if logger is None:
         logger = config.get_logger('utils')
-
+    #import ipdb; ipdb.set_trace()
     experts = config["experts"]
     # TODO(Samuel): clean up the logic since it's a little convoluted
     ordered = sorted(config["experts"]["modalities"])
@@ -250,6 +250,8 @@ def compute_dims(
             base = 54
             det_clusters = arch_args["vlad_clusters"].get("openpose", 1)
             in_dim, out_dim = base * det_clusters, base
+        elif expert == "ast":
+            in_dim, out_dim = 768 * vlad_clusters["ast"], 768
         else:
             common_dim = feat_agg[expert]["feat_dims"][feat_agg[expert]["type"]]
             # account for aggregation of multilpe forms (e.g. avg + max pooling)
@@ -282,7 +284,7 @@ def compute_dims(
     for expert, dim_pair in expert_dims.items():
         raw_dim = dim_pair[0]
         if expert in {"audio", "speech", "ocr", "detection", "detection-sem", "openpose",
-                      "speech.mozilla.0", "pann", "syncnet", "vggsound"}:
+                      "speech.mozilla.0", "pann", "syncnet", "vggsound", "ast"}:
             if feat_agg[expert]["temporal"] == "vlad":
                 raw_dim = raw_dim // vlad_clusters.get(expert, 1)
         raw_input_dims[expert] = raw_dim

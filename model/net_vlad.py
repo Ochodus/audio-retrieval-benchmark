@@ -54,7 +54,6 @@ class NetVLAD(nn.Module):
         self.sanity_checks(x)
         max_sample = x.size()[1]
         x = x.view(-1, self.feature_size)  # B x N x D -> BN x D
-
         if x.device != self.clusters.device:
             msg = f"x.device {x.device} != cluster.device {self.clusters.device}"
             raise ValueError(msg)
@@ -66,10 +65,10 @@ class NetVLAD(nn.Module):
 
         assignment = F.softmax(assignment, dim=1)  # BN x (K+G) -> BN x (K+G)
         # remove ghost assigments
-        assignment = assignment[:, :self.cluster_size]
-        assignment = assignment.view(-1, max_sample, self.cluster_size)  # -> B x N x K
+        assignment = assignment[:, :self.cluster_size] # BN x (K+G) -> BN x K
+        assignment = assignment.view(-1, max_sample, self.cluster_size)  # BN x K -> B x N x K
         a_sum = th.sum(assignment, dim=1, keepdim=True)  # B x N x K -> B x 1 x K
-        a = a_sum * self.clusters2
+        a = a_sum * self.clusters2 # B x 1 x K -> B x D x K
 
         assignment = assignment.transpose(1, 2)  # B x N x K -> B x K x N
 

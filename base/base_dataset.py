@@ -76,6 +76,7 @@ class BaseDataset(Dataset):
             ce_shared_dim: Union[None, int],
             **kwargs,
     ):
+        # import ipdb; ipdb.set_trace()
         self.task = task
         self.eval_only = eval_only
         self.logger = logger
@@ -113,7 +114,7 @@ class BaseDataset(Dataset):
 
         # TODO(Samuel) - is a global fixed ordering still necessary?
         self.ordered_experts = list(raw_input_dims.keys())
-
+        
         # Training and test lists are set by dataset-specific subclasses
         self.partition_lists = {}
         self.configure_train_test_splits(split_name=split_name)
@@ -216,8 +217,9 @@ class BaseDataset(Dataset):
         else:
             raise ValueError(f"Unrecognised task: {self.task}")
 
+        # import ipdb; ipdb.set_trace()
         for ii, video_name in enumerate(self.partition_lists["val"]):
-
+            
             self.raw_captions_retrieval[ii] = self.raw_captions[video_name]
             
             for expert in self.tensor_storage["fixed"].intersection(self.experts):
@@ -232,12 +234,15 @@ class BaseDataset(Dataset):
                     keep = np.logical_not(np.isnan(self.retrieval[expert][:, 0, 0]))
                     marker = np.ones_like(self.retrieval[expert][keep])
                     self.retrieval[expert][keep] = marker
-            
+            # import pdb; pdb.set_trace()
             for expert in self.tensor_storage["variable"].intersection(self.experts):
                 try:
                     feats = self.features[expert][video_name]
                 except:
-                    feats = np.nan 
+                    try:
+                        feats = self.features[expert][f"'{video_name}'"]
+                    except:
+                        feats = np.nan 
                 drop = self.has_missing_values(feats)
                 self.test_ind[expert][ii] = not drop
                 if drop:
@@ -246,9 +251,13 @@ class BaseDataset(Dataset):
                     keep = np.logical_not(np.isnan(self.retrieval[expert][:, 0, 0]))
                     marker = np.ones_like(self.retrieval[expert][keep])
                     self.retrieval[expert][keep] = marker
+                # import ipdb; ipdb.set_trace()
                 if self.test_ind[expert][ii]:
                     keep = min(self.max_tokens[expert], len(feats))
-                    self.retrieval[expert][ii, :keep, :] = feats[:keep]
+                    try:
+                        self.retrieval[expert][ii, :keep, :] = feats[:keep]
+                    except:
+                        self.retrieval[expert][ii, :keep, :] = feats[0][:keep]
 
             if self.task == "retrieval":
                 candidates_sentences = self.text_features[video_name]
@@ -296,7 +305,6 @@ class BaseDataset(Dataset):
             split_name (str): the name of the split
         """
         print(f"Now working on {split_name}")
-        # import pdb; pdb.set_trace()
         self.paths = type(self).dataset_paths(training_file=self.training_file)
         print("loading training/val splits....")
         tic = time.time()
@@ -515,7 +523,7 @@ class BaseDataset(Dataset):
                         assert caption_masks[pick] == 1
                     else:
                         pick = np.random.choice(len(text), size=self.captions_per_video)
- 
+
                     text = np.array(text)[pick]
                     if self.distil_features is not None:
                         # Select appropriate text embd for teacher data
@@ -705,4 +713,5 @@ class BaseDataset(Dataset):
             text_path = Path(self.root_feat) / text_feat_path
             caption_path = Path(self.root_feat) / self.paths["raw_captions_path"]
         self.text_features = memcache(text_path)
+        # import ipdb; ipdb.set_trace()
         self.raw_captions = memcache(caption_path)
